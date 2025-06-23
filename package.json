@@ -4,10 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "prisma generate && set DISABLE_ESLINT_PLUGIN=true && next build",
+    "build": "npx prisma generate && set DISABLE_ESLINT_PLUGIN=true && next build",
     "start": "next start",
     "lint": "next lint",
-    "postinstall": "prisma generate"
+    "postinstall": "npx prisma generate"
   },
   "dependencies": {
     "@clerk/nextjs": "^6.12.5",
