@@ -10,15 +10,17 @@ export type AuthCheckResult = {
   redirectTo?: string;
 };
 
-export async function checkAuthenticationAndSubscription(waitMs = 0): Promise<AuthCheckResult> {
+export async function checkAuthenticationAndSubscription(
+  waitMs = 0
+): Promise<AuthCheckResult> {
   const { userId } = await auth();
-  
+
   if (!userId) {
     return {
       userId: null,
       isAuthenticated: false,
       hasSubscription: false,
-      redirectTo: '/sign-in?redirect_url=/dashboard'
+      redirectTo: "/sign-in?redirect_url=/dashboard",
     };
   }
 
@@ -32,7 +34,7 @@ export async function checkAuthenticationAndSubscription(waitMs = 0): Promise<Au
       where: { userId },
     });
   } catch (error) {
-    console.error('Error checking subscription:', error);
+    console.error("Error checking subscription:", error);
     return {
       userId,
       isAuthenticated: true,
@@ -40,12 +42,12 @@ export async function checkAuthenticationAndSubscription(waitMs = 0): Promise<Au
     };
   }
 
-  const hasActiveSubscription = subscription?.status === 'active';
+  const hasActiveSubscription = subscription?.status === "active";
 
   return {
     userId,
     isAuthenticated: true,
     hasSubscription: hasActiveSubscription,
-    redirectTo: hasActiveSubscription ? undefined : '/pricing'
+    redirectTo: hasActiveSubscription ? undefined : "/pricing",
   };
-} 
+}
