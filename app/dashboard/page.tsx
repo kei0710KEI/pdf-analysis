@@ -1,19 +1,14 @@
-import { RedirectComponent } from "@/components/RedirectComponent"
-import DashboardContent from "./_components/DashboardContent"
-import { checkAuthenticationAndSubscription } from "@/lib/checkAuthSubscription"
+// export const dynamic = "force-dynamic";
 
-export default async function Dashboard() {
-    try {
-        const authCheck = await checkAuthenticationAndSubscription()
-        
-        if (authCheck.redirectTo) {
-    
-          return <RedirectComponent to={authCheck.redirectTo} />
-        }
+// import ClientDashboard from "./client-dashboard";
 
-        return <DashboardContent />
-      } catch (error) {
-        console.error('Error in Dashboard page:', error)
-        return <RedirectComponent to="/" />
-      }
+// export default function DashboardPage() {
+//   return <ClientDashboard />;
+// }
+
+export const dynamic = 'force-dynamic';
+
+// サーバーでは何も描画しない
+export default function ServerOnlyDashboardPage() {
+  return null;
 }
